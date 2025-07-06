@@ -36,10 +36,12 @@ Student_API_Project/
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/student-api.git
+# git clone https://github.com/imakhileshsahu/student-api.git
 cd student-api
 
-2️⃣ Setup MySQL database
+
+## 2️⃣ Setup MySQL database
+
 Run these commands in your MySQL:
 
 
@@ -52,7 +54,8 @@ GRANT ALL PRIVILEGES ON student_api.* TO 'studentuser'@'localhost';
 FLUSH PRIVILEGES;
 
 
-3️⃣ Update config
+###3️⃣ Update config
+
 Edit config/local.yaml:
 
 
@@ -66,7 +69,7 @@ db_port: "3306"
 db_name: "student_api"
 
 
-4️⃣ Run locally
+##4️⃣ Run locally
 
 go run ./cmd/student-api/main.go --config ./config/local.yaml
 
@@ -81,17 +84,18 @@ go run ./cmd/student-api/main.go --config ./config/local.yaml
 
 
 🧪 Example Requests
-📋 Create a student
+#📋 Create a student
 
 curl -X POST http://localhost:8082/api/students \
 -H "Content-Type: application/json" \
 -d '{"name":"Alice", "email":"alice@example.com", "age":20}'
 
 
-📋 Get all students
+#📋 Get all students
 
 curl http://localhost:8082/api/students
-📋 Get a student by ID
+
+#📋 Get a student by ID
 
 curl http://localhost:8082/api/students/1
 
