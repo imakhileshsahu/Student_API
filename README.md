@@ -24,16 +24,17 @@ A lightweight RESTful API built with **Go** and **MySQL** to manage student reco
 ## 🏗️ Project Structure
 
 Student_API_Project/
-├── cmd/student-api/main.go # Application entrypoint
+├── cmd/student-api/main.go         # Application entrypoint
 ├── internal/
-│ ├── config/config.go # Config loader (YAML)
-│ ├── mysql/mysql.go # MySQL implementation
-│ ├── storage/storage.go # Storage interface
-│ ├── type/types.go # Data types
-│ └── http/handlers/student.go # HTTP handlers
-├── config/local.yaml # Local config file
-├── go.mod, go.sum # Dependencies
-├── README.md # Project documentation
+│   ├── config/config.go            # Config loader (YAML)
+│   ├── mysql/mysql.go              # MySQL implementation
+│   ├── storage/storage.go          # Storage interface
+│   ├── type/types.go               # Data types
+│   └── http/handlers/student.go    # HTTP handlers
+├── config/local.yaml               # Local config file
+├── go.mod, go.sum                  # Dependencies
+├── README.md                       # Project documentation
+
 
 🧰 Setup
 
