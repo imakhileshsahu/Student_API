@@ -32,3 +32,16 @@ go.work.sum
 # .vscode/
 /storage
 /config
+
+
+# run file this command to start the server
+# go run ./cmd/student-api/main.go --config ./config/local.yaml
+
+# run this commandto create the database and table in mysql
+# mysql -u studentuser -p
+# Student@123
+# USE student_api;
+
+# SHOW TABLES;
+
+# SELECT * FROM student;

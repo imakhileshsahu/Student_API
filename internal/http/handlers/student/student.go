@@ -8,6 +8,7 @@ import (
 	"log/slog"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/imakhileshsahu/students-api/internal/storage"
@@ -59,6 +60,8 @@ func GetById(storage storage.Storage) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		id := r.PathValue("id")
+		id = strings.TrimSpace(id)
+
 		slog.Info("getting a student", slog.String("id", id))
 
 		intId, err := strconv.ParseInt(id, 10, 64)

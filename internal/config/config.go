@@ -1,51 +1,40 @@
+// Package config provides configuration structures and utilities for loading
+// application settings from environment variables or configuration files.
+//
+// The Config struct defines the main configuration for the application,
+// including environment, HTTP server settings, and database connection details.
 package config
 
 import (
-	"flag"
 	"log"
 	"os"
 
-	"github.com/ilyakaznacheev/cleanenv"
+	"gopkg.in/yaml.v3"
 )
 
-type HTTPServer struct {
-	Addr string `yaml:"address" env-required:"true"`
-}
-
-//`yaml:"env" env:"ENV" env-required:"true"` this is struct tag
-
-// env-default:"production"
 type Config struct {
-	Env         string `yaml:"env" env:"ENV" env-required:"true"`
-	StoragePath string `yaml:"storage_path" env-required:"true"`
-	HTTPServer  `yaml:"http_server"`
+	Env        string     `yaml:"env"`
+	HTTPServer HTTPServer `yaml:"http_server"`
+	DBUser     string     `yaml:"db_user"`
+	DBPassword string     `yaml:"db_password"`
+	DBHost     string     `yaml:"db_host"`
+	DBPort     string     `yaml:"db_port"`
+	DBName     string     `yaml:"db_name"`
 }
 
-func MustLoad() *Config {
-	var configPath string
+type HTTPServer struct {
+	Address string `yaml:"address"`
+}
 
-	// first try environment variable
-	configPath = os.Getenv("CONFIG_PATH")
-	if configPath == "" {
-		flags := flag.String("config", "", "path to the configuration file")
-		flag.Parse()
-
-		configPath = *flags
-		if configPath == "" {
-			log.Fatal("Config path is not set")
-		}
-	}
-
-	// check if file exists
-	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		log.Fatalf("config file does not exist: %s", configPath)
+func MustLoad(path string) *Config {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		log.Fatalf("failed to read config: %v", err)
 	}
 
 	var cfg Config
-	// error handling more important in go
-	err := cleanenv.ReadConfig(configPath, &cfg)
-	if err != nil {
-		log.Fatalf("can not read config file: %s", err.Error())
+	if err := yaml.Unmarshal(data, &cfg); err != nil {
+		log.Fatalf("failed to unmarshal config: %v", err)
 	}
 
 	return &cfg
