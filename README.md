@@ -22,6 +22,7 @@ A lightweight RESTful API built with **Go** and **MySQL** to manage student reco
 ---
 
 ## 🏗️ Project Structure
+
 Student_API_Project/
 ├── cmd/student-api/main.go # Application entrypoint
 ├── internal/
@@ -34,19 +35,16 @@ Student_API_Project/
 ├── go.mod, go.sum # Dependencies
 ├── README.md # Project documentation
 
+🧰 Setup
+
 ### 1️⃣ Clone the repository
 
-```bash
-# git clone https://github.com/imakhileshsahu/student-api.git
+git clone https://github.com/imakhileshsahu/student-api.git
 cd student-api
 
-
-### 2️⃣ Setup MySQL database
-
-```bash
+2️⃣ Setup MySQL database
 
 Run these commands in your MySQL:
-
 
 CREATE DATABASE student_api;
 
@@ -56,13 +54,9 @@ GRANT ALL PRIVILEGES ON student_api.* TO 'studentuser'@'localhost';
 
 FLUSH PRIVILEGES;
 
-
-###3️⃣ Update config
-
-```bash
+3️⃣ Update config
 
 Edit config/local.yaml:
-
 
 env: "dev"
 http_server:
@@ -73,15 +67,11 @@ db_host: "127.0.0.1"
 db_port: "3306"
 db_name: "student_api"
 
-
-### 4️⃣ Run locally
-
-```bash
+4️⃣ Run locally
 
 go run ./cmd/student-api/main.go --config ./config/local.yaml
 
 🌐 API Endpoints
-
 
 | Method | Endpoint             | Description          |
 | ------ | -------------------- | -------------------- |
@@ -89,43 +79,18 @@ go run ./cmd/student-api/main.go --config ./config/local.yaml
 | GET    | `/api/students`      | Get all students     |
 | GET    | `/api/students/{id}` | Get student by ID    |
 
-
 🧪 Example Requests
-### 📋 Create a student
-```bash
+
+📋 Create a student
 
 curl -X POST http://localhost:8082/api/students \
 -H "Content-Type: application/json" \
 -d '{"name":"Alice", "email":"alice@example.com", "age":20}'
 
-
-### 📋 Get all students
-```bash
+📋 Get all students
 
 curl http://localhost:8082/api/students
 
-### 📋 Get a student by ID
-```bash
+📋 Get a student by ID
 
 curl http://localhost:8082/api/students/1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
